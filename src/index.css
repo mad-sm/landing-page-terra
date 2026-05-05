@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+body { 
+    font-family: 'Inter', sans-serif; 
+    @apply bg-slate-50 text-slate-800 overflow-x-hidden scroll-smooth;
+}
+
+/* Glassmorphism Elegan untuk Tema Terang */
+.glass-card {
+    @apply bg-white/80 backdrop-blur-lg border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)];
+}
+
+.text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-blue-500 to-cyan-500;
+}
+
+/* Animasi Marquee untuk Klien */
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.animate-marquee { 
+    display: flex; 
+    animation: marquee 30s linear infinite; 
+}
+.animate-marquee:hover { 
+    animation-play-state: paused; 
+}
