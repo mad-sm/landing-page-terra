@@ -121,79 +121,37 @@ body {
   );
 }
 
-/* --- Karcis (signature) ---------------------------------------------------
-   Artefak paling khas di dunia ini: karcis termal yang keluar dari
-   dispenser. Dipilih menggantikan grafik palang lama karena ia membawa
-   INFORMASI, bukan cuma kategori — isinya persis catatan yang jadi
-   janji perusahaan ("bisa diperiksa"), jadi tesis halaman ini terbukti
-   oleh bendanya sendiri, bukan cuma diklaim di judul.                     */
-.tiket {
-  position: relative;
-  background: var(--color-gading-050);
-  color: var(--color-hijau-900);
-}
-
-/* Perforasi bawah: setengah lingkaran sewarna latar halaman ditumpuk di
-   tepi karcis. Ini mengandaikan latar di belakangnya hijau-900 polos —
-   kalau karcis dipindah ke permukaan lain, warna ini harus ikut. */
-.tiket::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -7px;
-  height: 14px;
-  background-image: radial-gradient(
-    circle at 8px 7px,
-    var(--color-hijau-900) 6.5px,
-    transparent 7px
-  );
-  background-size: 16px 14px;
-  background-repeat: repeat-x;
-}
-
-/* Barcode: tiga lapis gradien dengan periode 3/5/7px. Kelipatan
-   persekutuannya 105px, jadi polanya baru mengulang jauh di luar lebar
-   karcis — hasilnya terbaca acak, tidak seperti pagar yang rapi. */
-.barcode {
+/* --- Palang (signature) ---------------------------------------------------
+   Merah-putih seperti barrier gate asli. Bisa dibuka-tutup pengguna, jadi
+   ia bukan hiasan: menekannya memberi balasan yang sama seperti gerbang
+   sungguhan — lengan bergerak, lampu berganti, status berubah.            */
+.palang {
   background-image: repeating-linear-gradient(
-      90deg,
-      var(--color-hijau-900) 0 1px,
-      transparent 1px 3px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      var(--color-hijau-900) 0 2px,
-      transparent 2px 7px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      var(--color-hijau-900) 0 1px,
-      transparent 1px 5px
-    );
+    90deg,
+    var(--color-merah) 0 34px,
+    var(--color-gading-050) 34px 68px
+  );
 }
 
-/* Keluar dari dispenser: terdorong ke atas lalu berhenti sedikit miring,
-   seperti benda yang betulan tergeletak. */
-@keyframes karcis-keluar {
-  from {
-    transform: translateY(32px) rotate(-1.6deg);
-    opacity: 0;
+/* --- Logo mengapung di latar ---------------------------------------------
+   Sangat samar (opacity diatur di komponen). Geraknya lambat 16 detik —
+   apa pun yang lebih cepat akan menarik mata menjauh dari judul.          */
+@keyframes logo-apung {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
   }
-  to {
-    transform: translateY(0) rotate(-1.6deg);
-    opacity: 1;
+  50% {
+    transform: translateY(-20px) rotate(2.5deg);
   }
 }
 
-.karcis-keluar {
-  transform: rotate(-1.6deg);
-  animation: karcis-keluar 750ms var(--ease-keluar) 250ms backwards;
+.logo-apung {
+  animation: logo-apung 16s ease-in-out infinite;
 }
 
 /* --- Hormati reduced-motion ---------------------------------------------
-   Karcis langsung di posisi akhir, bukan menghilang — supaya layout dan
-   maknanya tetap sama tanpa ada yang bergerak. */
+   Elemen bergerak langsung di posisi akhirnya. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -204,10 +162,9 @@ body {
     scroll-behavior: auto !important;
   }
 
-  /* Karcis langsung di tempat — tetap miring, supaya bentuk akhirnya sama
-     dengan yang dilihat orang lain, cuma tanpa gerakan. */
-  .karcis-keluar {
-    animation: none;
-    transform: rotate(-1.6deg);
+  /* Lengan palang tetap berpindah posisi saat ditekan — itu balasan atas
+     aksi pengguna, bukan hiasan — cuma perpindahannya tidak dianimasikan. */
+  .lengan-palang {
+    transition: none !important;
   }
 }
