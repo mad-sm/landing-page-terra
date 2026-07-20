@@ -1,29 +1,152 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
-body { 
-    font-family: 'Inter', sans-serif; 
-    @apply bg-slate-50 text-slate-800 overflow-x-hidden scroll-smooth;
+/* ==========================================================================
+   TOKEN SISTEM — Terra Parking
+   Arah: industrial terpercaya. Rangka gelap (aspal), bukti terang (beton).
+   Semua warna & font diturunkan dari sini, jangan tulis hex mentah di komponen.
+   ========================================================================== */
+
+@theme {
+  /* --- Warna --------------------------------------------------------------
+     Aspal = permukaan gelap, hitam kebiruan (bukan hitam murni, biar nggak mati).
+     Beton = permukaan terang tempat foto & logo klien duduk.
+     Sinyal = aksen, dipakai irit. Merah HANYA untuk grafik palang.          */
+  --color-aspal-900: #14161a;
+  --color-aspal-800: #1e2126;
+  --color-aspal-700: #2b2f36;
+
+  --color-beton-300: #a8adb5;
+  --color-beton-100: #dcdee1;
+  --color-beton-050: #f2f3f4;
+
+  --color-sinyal-amber: #f5b024;
+  --color-sinyal-merah: #d9463b;
+
+  /* --- Huruf --------------------------------------------------------------
+     Archivo dipakai melebar (wdth 112–125) untuk judul — kesannya huruf cat
+     di rambu fasilitas. Plex Sans untuk badan, Plex Mono untuk data.        */
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* --- Skala tipe ---------------------------------------------------------
+     Satu skala untuk seluruh halaman. Jangan tulis clamp() lepas di komponen
+     — itu yang bikin ukuran melenceng sendiri-sendiri antar seksi.          */
+  --text-display: clamp(2.25rem, 8vw, 5.5rem);
+  --text-judul-1: clamp(1.75rem, 4.5vw, 3.25rem);
+  --text-judul-2: clamp(1.5rem, 3vw, 2rem);
+  --text-judul-3: 1.125rem;
+  --text-badan-besar: clamp(1.0625rem, 1.5vw, 1.25rem);
+
+  /* --- Gerak -------------------------------------------------------------- */
+  --ease-palang: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* Glassmorphism Elegan untuk Tema Terang */
-.glass-card {
-    @apply bg-white/80 backdrop-blur-lg border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)];
+/* --- Dasar --------------------------------------------------------------- */
+
+body {
+  @apply bg-aspal-900 text-beton-050 font-sans antialiased overflow-x-hidden;
 }
 
-.text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-blue-500 to-cyan-500;
+/* Dua tingkat judul, sengaja dipisah.
+
+   .judul-besar — HURUF BESAR, melebar penuh (wdth 125). Hanya untuk judul
+   berukuran besar: hero dan kepala seksi. Huruf besar bekerja di ukuran besar
+   karena dibaca sebagai bentuk, bukan dieja.
+
+   .judul — huruf kalimat biasa, lebar sedang. Untuk judul kartu dan sub-judul.
+   Di ukuran kecil, HURUF BESAR + melebar justru memperlambat pemindaian: semua
+   kata jadi kotak setinggi sama sehingga bentuk katanya hilang. */
+.judul-besar {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 125;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+  text-transform: uppercase;
 }
 
-/* Animasi Marquee untuk Klien */
-@keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+.judul {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 112;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
 }
-.animate-marquee { 
-    display: flex; 
-    animation: marquee 30s linear infinite; 
+
+/* Label kecil di atas judul seksi. Mono ditahan untuk peran ini saja —
+   penanda dan data — supaya tetap terbaca sebagai "keterangan teknis". */
+.eyebrow {
+  font-family: var(--font-mono);
+  @apply text-xs uppercase tracking-[0.18em] text-sinyal-amber;
 }
-.animate-marquee:hover { 
-    animation-play-state: paused; 
+
+/* Teks tombol. Sengaja BUKAN mono huruf besar berspasi lebar: itu bikin
+   tombol terbaca sebagai label dekoratif, bukan perintah. Huruf kalimat
+   dengan bobot tebal lebih cepat dikenali sebagai sesuatu yang bisa diklik. */
+.aksi {
+  font-family: var(--font-sans);
+  @apply text-sm font-semibold tracking-normal normal-case;
+}
+
+/* Fokus keyboard harus kelihatan di latar gelap maupun terang. */
+:focus-visible {
+  outline: 2px solid var(--color-sinyal-amber);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --- Motif garis bahaya --------------------------------------------------
+   Diambil dari foto sendiri: bolar kuning-hitam di RSUD Mantingan dan cat
+   trotoar di RSJD. Dipakai sebagai pita tipis, bukan latar besar.          */
+.garis-bahaya {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-sinyal-amber) 0 12px,
+    var(--color-aspal-900) 12px 24px
+  );
+}
+
+/* --- Palang (signature) ---------------------------------------------------
+   Merah-putih seperti barrier gate asli. Terangkat sekali saat halaman
+   dibuka, lalu bentuk yang sama dipakai sebagai pembatas antar seksi.      */
+.palang {
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--color-sinyal-merah) 0 40px,
+    var(--color-beton-050) 40px 80px
+  );
+}
+
+@keyframes palang-naik {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-88deg);
+  }
+}
+
+.palang-naik {
+  transform-origin: left center;
+  animation: palang-naik 700ms var(--ease-palang) 300ms forwards;
+}
+
+/* --- Hormati reduced-motion ---------------------------------------------
+   Palang langsung di posisi terbuka, bukan menghilang — supaya layout dan
+   maknanya tetap sama tanpa ada yang bergerak. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .palang-naik {
+    animation: none;
+    transform: rotate(-88deg);
+  }
 }
