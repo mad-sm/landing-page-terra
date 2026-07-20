@@ -172,8 +172,8 @@ export default function Geser({
 
   const gayaTombol =
     "w-11 h-11 flex items-center justify-center border border-current/30 " +
-    "transition-colors hover:bg-sinyal-amber hover:text-aspal-900 " +
-    "hover:border-sinyal-amber disabled:opacity-20 " +
+    "transition-colors hover:bg-emas hover:text-hijau-900 " +
+    "hover:border-emas disabled:opacity-20 " +
     "disabled:hover:bg-transparent disabled:hover:text-current " +
     "disabled:hover:border-current/30 disabled:cursor-default";
 

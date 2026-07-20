@@ -30,16 +30,16 @@ const MITRA = [
 
 export default function Mitra() {
   return (
-    <section id="mitra" className="bg-aspal-900 py-24 md:py-32">
+    <section id="mitra" className="bg-hijau-900 py-24 md:py-32">
       <div className="container mx-auto px-6 mb-16">
         <div className="max-w-2xl">
           <p className="eyebrow mb-6">Mitra</p>
-          <h2 className="judul-besar text-judul-1 text-beton-050 mb-6">
+          <h2 className="judul-besar text-judul-1 text-gading-050 mb-6">
             Rumah sakit, pasar,
             <br className="hidden sm:block" />{" "}
-            <span className="text-sinyal-amber">dan tempat wisata</span>
+            <span className="text-emas">dan tempat wisata</span>
           </h2>
-          <p className="text-lg text-beton-300 leading-relaxed">
+          <p className="text-lg text-gading-300 leading-relaxed">
             Lima belas lokasi di Boyolali, Solo, Sukoharjo, Klaten, Ngawi, dan
             Semarang — dari gerbang IGD sampai pelataran cagar budaya.
           </p>
@@ -53,7 +53,7 @@ export default function Mitra() {
           {MITRA.map((m) => (
             <div
               key={m.nama}
-              className="shrink-0 w-52 bg-beton-050 flex flex-col p-6"
+              className="shrink-0 w-52 bg-gading-050 flex flex-col p-6"
             >
               <div className="h-20 w-full flex items-center justify-center mb-4">
                 {m.img ? (
@@ -68,7 +68,7 @@ export default function Mitra() {
                 ) : (
                   // Tanpa logo, namanya sendiri yang jadi isi kartu — jadi
                   // tidak diulang lagi di bawah supaya tidak kembar.
-                  <p className="judul text-lg text-aspal-900 text-center leading-tight">
+                  <p className="judul text-lg text-hijau-900 text-center leading-tight">
                     {m.nama}
                   </p>
                 )}
@@ -76,11 +76,11 @@ export default function Mitra() {
 
               <div className="mt-auto text-center">
                 {m.img && (
-                  <p className="font-mono text-[0.6rem] uppercase tracking-[0.12em] text-aspal-900/70 leading-relaxed">
+                  <p className="font-mono text-[0.6rem] uppercase tracking-[0.12em] text-hijau-900/70 leading-relaxed">
                     {m.nama}
                   </p>
                 )}
-                <p className="font-mono text-[0.6rem] uppercase tracking-[0.12em] text-aspal-900/45 mt-1">
+                <p className="font-mono text-[0.6rem] uppercase tracking-[0.12em] text-hijau-900/45 mt-1">
                   {m.kota}
                 </p>
               </div>

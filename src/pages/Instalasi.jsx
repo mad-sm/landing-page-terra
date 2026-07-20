@@ -26,16 +26,19 @@ const FOTO = [
 
 export default function Instalasi() {
   return (
-    <section id="instalasi" className="bg-beton-050 text-aspal-900 py-24 md:py-32">
+    <section id="instalasi" className="bg-gading-050 text-hijau-900 py-24 md:py-32">
       <div className="container mx-auto px-6">
         <div className="max-w-2xl mb-16">
-          <p className="eyebrow mb-6 !text-aspal-900">Instalasi</p>
-          <h2 className="judul-besar text-judul-1 mb-6">
+          {/* Di panel gading, judul pakai hijau merek (#007A3C) — ini satu-
+              satunya tempat warna merek tampil besar, dan 4,82:1 di atas
+              gading masih lolos AA bahkan untuk teks biasa. */}
+          <p className="eyebrow mb-6 !text-hijau-500">Instalasi</p>
+          <h2 className="judul-besar text-judul-1 text-hijau-500 mb-6">
             Foto lapangan,
             <br className="hidden sm:block" />
             bukan foto stok
           </h2>
-          <p className="text-lg text-aspal-900/70 leading-relaxed">
+          <p className="text-lg text-hijau-900/70 leading-relaxed">
             Setiap gambar di bawah ini diambil di lokasi yang kami pasang dan
             operasikan sendiri.
           </p>
@@ -49,7 +52,7 @@ export default function Instalasi() {
         <Geser label="Galeri foto instalasi">
           {FOTO.map((f, i) => (
             <figure key={f.file} className="shrink-0 snap-start">
-              <div className="h-64 md:h-80 bg-beton-100 overflow-hidden">
+              <div className="h-64 md:h-80 bg-gading-100 overflow-hidden">
                 <img
                   src={`/images/home/${f.file}`}
                   alt={
@@ -65,7 +68,7 @@ export default function Instalasi() {
                   className="h-full w-auto max-w-none object-cover grayscale"
                 />
               </div>
-              <figcaption className="mt-3 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-aspal-900/60">
+              <figcaption className="mt-3 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-hijau-900/60">
                 {f.lokasi ?? " "}
               </figcaption>
             </figure>

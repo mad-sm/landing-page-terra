@@ -2,25 +2,39 @@
 
 /* ==========================================================================
    TOKEN SISTEM — Terra Parking
-   Arah: industrial terpercaya. Rangka gelap (aspal), bukti terang (beton).
+   Arah: hijau Mangkunegaran. Rangka hijau pekat, bukti terang di atas gading.
    Semua warna & font diturunkan dari sini, jangan tulis hex mentah di komponen.
    ========================================================================== */
 
 @theme {
   /* --- Warna --------------------------------------------------------------
-     Aspal = permukaan gelap, hitam kebiruan (bukan hitam murni, biar nggak mati).
-     Beton = permukaan terang tempat foto & logo klien duduk.
-     Sinyal = aksen, dipakai irit. Merah HANYA untuk grafik palang.          */
-  --color-aspal-900: #14161a;
-  --color-aspal-800: #1e2126;
-  --color-aspal-700: #2b2f36;
+     Hijau diambil dari logo sendiri: piksel terpekatnya #007A3C, midtone di
+     sekitar #30A878. Ini hijau DINGIN (condong teal), bukan hijau kekuningan
+     — jangan diganti hijau daun/lime, warnanya akan lepas dari merek.
 
-  --color-beton-300: #a8adb5;
-  --color-beton-100: #dcdee1;
-  --color-beton-050: #f2f3f4;
+     Gading = permukaan terang tempat foto & logo mitra duduk. Sengaja putih
+     gading hangat, bukan putih murni: itu warna tembok dan pilar Pura
+     Mangkunegaran, dan ia menenangkan hijau pekat di sebelahnya.
 
-  --color-sinyal-amber: #f5b024;
-  --color-sinyal-merah: #d9463b;
+     Emas = aksen, dipakai irit. Pasangan hijau-emas itu palet Mangkunegaran.
+     Merah HANYA untuk grafik palang.
+
+     CATATAN ARAH: rujukan Jawa-nya berhenti di WARNA. Jangan tambah batik,
+     ukiran, atau huruf sambung — begitu ornamen masuk, halamannya berubah
+     jadi undangan pernikahan. Huruf geometris + grid ketat yang bikin ia
+     tetap modern. */
+  --color-hijau-900: #0a1a12;
+  --color-hijau-800: #102619;
+  --color-hijau-700: #1d3a2a;
+  --color-hijau-500: #007a3c;
+  --color-hijau-400: #2fa86f;
+
+  --color-gading-300: #9dafa2;
+  --color-gading-100: #e1dccb;
+  --color-gading-050: #f4f1e6;
+
+  --color-emas: #d9b44a;
+  --color-merah: #c2453c;
 
   /* --- Huruf --------------------------------------------------------------
      Archivo dipakai melebar (wdth 112–125) untuk judul — kesannya huruf cat
@@ -45,7 +59,7 @@
 /* --- Dasar --------------------------------------------------------------- */
 
 body {
-  @apply bg-aspal-900 text-beton-050 font-sans antialiased overflow-x-hidden;
+  @apply bg-hijau-900 text-gading-050 font-sans antialiased overflow-x-hidden;
 }
 
 /* Dua tingkat judul, sengaja dipisah.
@@ -78,7 +92,7 @@ body {
    penanda dan data — supaya tetap terbaca sebagai "keterangan teknis". */
 .eyebrow {
   font-family: var(--font-mono);
-  @apply text-xs uppercase tracking-[0.18em] text-sinyal-amber;
+  @apply text-xs uppercase tracking-[0.18em] text-emas;
 }
 
 /* Teks tombol. Sengaja BUKAN mono huruf besar berspasi lebar: itu bikin
@@ -91,7 +105,7 @@ body {
 
 /* Fokus keyboard harus kelihatan di latar gelap maupun terang. */
 :focus-visible {
-  outline: 2px solid var(--color-sinyal-amber);
+  outline: 2px solid var(--color-emas);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -102,8 +116,8 @@ body {
 .garis-bahaya {
   background-image: repeating-linear-gradient(
     -45deg,
-    var(--color-sinyal-amber) 0 12px,
-    var(--color-aspal-900) 12px 24px
+    var(--color-emas) 0 12px,
+    var(--color-hijau-900) 12px 24px
   );
 }
 
@@ -113,8 +127,8 @@ body {
 .palang {
   background-image: repeating-linear-gradient(
     90deg,
-    var(--color-sinyal-merah) 0 40px,
-    var(--color-beton-050) 40px 80px
+    var(--color-merah) 0 40px,
+    var(--color-gading-050) 40px 80px
   );
 }
 
