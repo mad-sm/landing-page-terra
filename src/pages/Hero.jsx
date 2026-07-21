@@ -62,7 +62,7 @@ export default function Hero() {
 
             <div className="flex flex-wrap gap-4 mb-12">
               <a
-                href="https://wa.me/6281329338899"
+                href="https://wa.me/6285600478378"
                 className="px-8 py-4 bg-emas text-hijau-900 aksi rounded-sm hover:bg-gading-050 transition-colors"
               >
                 Hubungi via WhatsApp

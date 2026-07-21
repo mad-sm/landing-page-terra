@@ -124,7 +124,7 @@ export default function Navbar() {
           ))}
 
           <a
-            href="https://wa.me/6281329338899"
+            href="https://wa.me/6285600478378"
             className="mt-8 mb-2 px-6 py-4 bg-emas text-hijau-900 aksi text-center rounded-sm"
           >
             Hubungi via WhatsApp

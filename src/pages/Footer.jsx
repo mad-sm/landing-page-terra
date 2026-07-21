@@ -1,17 +1,18 @@
+// Telepon & Surel sengaja disembunyikan dulu atas permintaan. Datanya tetap
+// disimpan di sini supaya gampang dimunculkan lagi: cukup pindahkan kembali ke
+// array KONTAK. Nomor WA/telepon lama (081 329 338899) belum diganti karena
+// nomor barunya cuma untuk kontak WhatsApp; kalau nanti nomor telepon resmi
+// juga berubah, perbarui isi & href di sini.
+//
+// const DISEMBUNYIKAN = [
+//   { label: "Telepon", isi: "081 329 338899", href: "tel:+6281329338899" },
+//   { label: "Surel", isi: "tigaputerasukses@gmail.com",
+//     href: "mailto:tigaputerasukses@gmail.com" },
+// ];
 const KONTAK = [
   {
     label: "Alamat",
     isi: "Jl. Tiga Negeri 50, Makamhaji, Kartasura, Surakarta",
-  },
-  {
-    label: "Telepon",
-    isi: "081 329 338899",
-    href: "tel:+6281329338899",
-  },
-  {
-    label: "Surel",
-    isi: "tigaputerasukses@gmail.com",
-    href: "mailto:tigaputerasukses@gmail.com",
   },
 ];
 
@@ -36,7 +37,7 @@ export default function Footer() {
               dengan gambaran sistem yang cocok dan skema kerja samanya.
             </p>
             <a
-              href="https://wa.me/6281329338899"
+              href="https://wa.me/6285600478378"
               className="inline-block px-8 py-4 bg-emas text-hijau-900 aksi rounded-sm hover:bg-gading-050 transition-colors"
             >
               Hubungi via WhatsApp
